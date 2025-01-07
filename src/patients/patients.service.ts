@@ -9,9 +9,9 @@ import { PatientEntity } from './entities/patient.entity';
 export class PatientsService {
   constructor(
     @InjectRepository(PatientEntity)
-    private readonly patientRepository: Repository<Patient>
+    private readonly patientRepository: Repository<PatientEntity>
   ) {}
-
+  
   async create(createPatientDto: CreatePatientDto): Promise<Patient> {
     const newPatient = this.patientRepository.create(createPatientDto);
     return await this.patientRepository.save(newPatient);

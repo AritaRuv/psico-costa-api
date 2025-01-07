@@ -2,41 +2,20 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Local ENV",
-      "skipFiles": ["<node_internals>/**"],
+      "name": "Launch NestJS (ts-node)",
       "type": "node",
       "request": "launch",
+      "program": "${workspaceFolder}/src/main.ts",
+      "args": [],
       "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start:watch"],
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "Infisical DEV",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "node",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start:infisical-dev"],
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "Infisical PRD",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "node",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start:infisical-prd"],
-      "console": "integratedTerminal"
-    },
-    {
-      "type": "node-terminal",
-      "name": "Ejecutar el script: start",
-      "request": "launch",
-      "command": "npm run start",
-      "cwd": "${workspaceFolder}"
+      "runtimeArgs": ["--require", "ts-node/register"],
+      "env": {
+        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
+      },
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "skipFiles": ["<node_internals>/**"]
     }
   ]
 }

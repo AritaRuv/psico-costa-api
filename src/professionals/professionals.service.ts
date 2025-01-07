@@ -1,26 +1,54 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProfessionalDto } from './dto/create-professional.dto';
 import { UpdateProfessionalDto } from './dto/update-professional.dto';
+import { Repository } from 'typeorm';
+import { ProfessionalEntity } from './entities/professional.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ProfessionalsService {
-  create(createProfessionalDto: CreateProfessionalDto) {
-    return 'This action adds a new professional';
+  constructor(
+    @InjectRepository(ProfessionalEntity)
+    private readonly professionalsRepository: Repository<ProfessionalEntity>
+  ) {}
+  
+  async create(createProfessionalDto: CreateProfessionalDto): Promise<Professional> {
+    const newProfessional = this.professionalsRepository.create(createProfessionalDto);
+    return await this.professionalsRepository.save(newProfessional);
   }
 
-  findAll() {
-    return `This action returns all professionals`;
+  async findAll(): Promise<Professional[]> {
+    return await this.professionalsRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} professional`;
+  async findOne(id: number): Promise<Professional> {
+    const professional = await this.professionalsRepository.findOne({ where: { id } });
+    if (!professional) {
+      throw new Error(`Professional with ID ${id} not found`);
+    }
+    return professional;
   }
 
-  update(id: number, updateProfessionalDto: UpdateProfessionalDto) {
-    return `This action updates a #${id} professional`;
+  async update(
+    id: number,
+    updateProfessionalDto: UpdateProfessionalDto
+  ): Promise<Professional> {
+    const professional = await this.professionalsRepository.preload({
+      id,
+      ...updateProfessionalDto,
+    });
+    if (!professional) {
+      throw new Error(`Professional with ID ${id} not found`);
+    }
+    return await this.professionalsRepository.save(professional);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} professional`;
+  async remove(id: number): Promise<void> {
+    const professional = await this.professionalsRepository.findOne({ where: { id } });
+    if (!professional) {
+      throw new Error(`Professional with ID ${id} not found`);
+    }
+    await this.professionalsRepository.remove(professional);
   }
 }
+
