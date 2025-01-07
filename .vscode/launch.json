@@ -2,17 +2,41 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Local ENV",
+      "skipFiles": ["<node_internals>/**"],
       "type": "node",
       "request": "launch",
-      "name": "Launch NestJS Application",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start:watch"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Infisical DEV",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/.bin/ts-node",
-      "args": ["${workspaceFolder}/src/main.ts"],
-      "autoAttachChildProcesses": true,
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
-      "sourceMaps": true,
-      "runtimeExecutable": "/opt/homebrew/bin/node",
-      "preLaunchTask": "npm: build"
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start:infisical-dev"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Infisical PRD",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start:infisical-prd"],
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node-terminal",
+      "name": "Ejecutar el script: start",
+      "request": "launch",
+      "command": "npm run start",
+      "cwd": "${workspaceFolder}"
     }
   ]
 }
