@@ -12,8 +12,7 @@ export class OfficeService {
     private readonly officeRepository: Repository<OfficeEntity>
   ) {}
 
-  async create(createOfficeDto: CreateOfficeDto): Promise<Office> { 
-
+  async create(createOfficeDto: CreateOfficeDto): Promise<Office> {
     // const newEntidad = new EntidadX()
     // newEntidad.name = 'Consultorio1'
     // newEntidad.location = 'al fondo a la derecha'
@@ -36,10 +35,7 @@ export class OfficeService {
     return office;
   }
 
-  async update(
-    id: number,
-    updateOfficeDto: UpdateOfficeDto
-  ): Promise<Office> {
+  async update(id: number, updateOfficeDto: UpdateOfficeDto): Promise<Office> {
     const office = await this.officeRepository.preload({
       id,
       ...updateOfficeDto,
@@ -58,4 +54,3 @@ export class OfficeService {
     await this.officeRepository.remove(office);
   }
 }
-
