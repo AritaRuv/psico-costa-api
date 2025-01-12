@@ -10,7 +10,7 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-@Entity() //Tabla de la base de datos
+@Entity("appointment") //Tabla de la base de datos
 export class AppointmentEntity extends BaseEntity implements Appointment {
   // una clase es una especie de objeto
   @PrimaryGeneratedColumn() //primary key

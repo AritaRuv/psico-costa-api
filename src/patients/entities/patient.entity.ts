@@ -9,7 +9,7 @@ import { AppointmentEntity } from 'src/appointments/entities/appointment.entity'
 import { HealthInsuranceEntity } from 'src/health-insurance/entities/health-insurance.entity';
 import { BaseEntity } from 'src/base-entity/base-entity.entity';
 
-@Entity()
+@Entity("patient")
 export class PatientEntity extends BaseEntity implements Patient {
   //una especie de objeto que va a definir la estructura de una tabla dentro de la base de datos
   @PrimaryGeneratedColumn() // PK
@@ -26,6 +26,9 @@ export class PatientEntity extends BaseEntity implements Patient {
 
   @Column()
   phoneNumber: string;
+
+  @Column()
+  birthDate: Date;
 
   @Column({ nullable: true })
   address?: string;

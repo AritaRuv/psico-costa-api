@@ -7,7 +7,7 @@ import {
   BaseEntity,
 } from 'typeorm';
 
-@Entity()
+@Entity("health_insurance")
 export class HealthInsuranceEntity
   extends BaseEntity
   implements HealthInsurance
