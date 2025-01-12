@@ -2,20 +2,29 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch NestJS (ts-node)",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/src/main.ts",
-      "args": [],
-      "cwd": "${workspaceFolder}",
-      "runtimeArgs": ["--require", "ts-node/register"],
-      "env": {
-        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
-      },
-      "console": "integratedTerminal",
+      "name": "Debug NestJS",
+      "runtimeExecutable": "node",
+      "args": [
+        "-r",
+        "ts-node/register/transpile-only",
+        "-r",
+        "tsconfig-paths/register",
+        "src/main.ts"
+      ],
+      "autoAttachChildProcesses": true,
+      "restart": true,
+      "outputCapture": "std",
       "sourceMaps": true,
-      "outFiles": ["${workspaceFolder}/dist/**/.js"],
-      "skipFiles": ["<node_internals>/**"]
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
     }
   ]
 }
