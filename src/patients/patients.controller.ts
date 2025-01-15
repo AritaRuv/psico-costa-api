@@ -22,7 +22,8 @@ export class PatientsController {
 
   @Get()
   findAll() {
-    return this.patientsService.findAll();
+    const patients = this.patientsService.findAll();
+    return patients;
   }
 
   @Get(':id')

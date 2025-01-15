@@ -18,7 +18,8 @@ export class PatientsService {
   }
 
   async findAll(): Promise<Patient[]> {
-    return await this.patientRepository.find();
+    const patients = await this.patientRepository.find();
+    return patients;
   }
 
   async findOne(id: number): Promise<Patient> {
