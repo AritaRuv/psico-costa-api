@@ -11,7 +11,7 @@ import { HealthInsuranceService } from './health-insurance.service';
 import { CreateHealthInsuranceDto } from './dto/create-health-insurance.dto';
 import { UpdateHealthInsuranceDto } from './dto/update-health-insurance.dto';
 
-@Controller('health-insurance')
+@Controller('health-insurances')
 export class HealthInsuranceController {
   constructor(
     private readonly healthInsuranceService: HealthInsuranceService
