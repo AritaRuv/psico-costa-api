@@ -13,14 +13,15 @@ export class OfficeService {
   ) {}
 
   async create(createOfficeDto: CreateOfficeDto): Promise<Office> {
-    // const newEntidad = new EntidadX()
-    // newEntidad.name = 'Consultorio1'
-    // newEntidad.location = 'al fondo a la derecha'
-    // const entidadDB = repository.create(newEntidad)
-    // y despues guardo con el repository.save(entidadDB)
+    const newOfficeEntity = new OfficeEntity();
+    newOfficeEntity.name = createOfficeDto.name
+    newOfficeEntity.location = createOfficeDto.location
+    newOfficeEntity.professionals = createOfficeDto.professionals.map((id) => ({
+      id: id,
+    }));
 
-    const newOffice = this.officeRepository.create(createOfficeDto);
-    return await this.officeRepository.save(newOffice);
+    // const newOffice = this.officeRepository.create(createOfficeDto);
+    return await this.officeRepository.save(newOfficeEntity);
   }
 
   async findAll(): Promise<Office[]> {

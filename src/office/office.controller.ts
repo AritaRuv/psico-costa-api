@@ -11,12 +11,12 @@ import { OfficeService } from './office.service';
 import { CreateOfficeDto } from './dto/create-office.dto';
 import { UpdateOfficeDto } from './dto/update-office.dto';
 
-@Controller('office')
+@Controller('offices')
 export class OfficeController {
   constructor(private readonly officeService: OfficeService) {}
 
   @Post()
-  create(@Body() createOfficeDto: CreateOfficeDto) {
+  create(@Body() createOfficeDto: any) {
     return this.officeService.create(createOfficeDto);
   }
 
