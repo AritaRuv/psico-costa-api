@@ -23,10 +23,7 @@ export class AppointmentEntity extends BaseEntity implements Appointment {
   @JoinColumn({ name: 'patientId' })
   patient: Patient;
 
-  @ManyToOne(
-    () => ProfessionalEntity,
-    (professional) => professional.appointments
-  )
+  @ManyToOne(() => ProfessionalEntity,(professional) => professional.appointments)
   @JoinColumn({ name: 'professionalId' })
   professional: Professional;
 
