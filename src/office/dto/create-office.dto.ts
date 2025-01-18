@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsArray } from 'class-validator';
 
 export class CreateOfficeDto {
   @IsString()
@@ -9,10 +9,8 @@ export class CreateOfficeDto {
   @IsNotEmpty()
   location: string;
 
+  @IsArray()
   @IsOptional()
-  professionals: Professional[];
-
-  @IsOptional()
-  appointments: Appointment[];
+  professionals: number[];
 }
 

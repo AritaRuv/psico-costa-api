@@ -18,7 +18,9 @@ export class ProfessionalsService {
   }
 
   async findAll(): Promise<Professional[]> {
-    return await this.professionalsRepository.find();
+    return await this.professionalsRepository.find({
+      relations: ['office'],
+    });
   }
 
   async findOne(id: number): Promise<Professional> {

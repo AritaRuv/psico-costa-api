@@ -6,5 +6,5 @@ type Professional = BaseEntityTypes & {
   phoneNumber: string;
   specialty: string;
   appointments: Appointment[];
-  offices: Office[];
+  office: Office;
 };

@@ -6,6 +6,9 @@ import {
   Column,
   OneToMany,
   BaseEntity,
+  OneToOne,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity("professional")
@@ -28,9 +31,10 @@ export class ProfessionalEntity extends BaseEntity implements Professional {
   @Column()
   specialty: string;
 
+  @ManyToOne(() => OfficeEntity, (office) => office.professionals)
+  @JoinColumn({ name: 'officeId' })
+  office: Office;
+ 
   @OneToMany(() => AppointmentEntity, (appointment) => appointment.professional)
   appointments: Appointment[];
-
-  @OneToMany(() => OfficeEntity, (office) => office.professionals)
-  offices: Office[];
 }
